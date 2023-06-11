@@ -40,4 +40,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Call the CreateDBIfNotExists extension method
+app.CreateDbIfNotExists();
+
 app.Run();
