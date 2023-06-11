@@ -11,4 +11,6 @@ public class DatabaseContext : DbContext
     }
 
     public DbSet<Product> Products => Set<Product>();
+    public DbSet<Sale> Sales => Set<Sale>();
+    public DbSet<SaleDetail> SaleDetails => Set<SaleDetail>();
 }
