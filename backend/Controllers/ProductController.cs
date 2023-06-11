@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using AlcottBackend.Models;
+using AlcottBackend.Services;
 
 namespace AlcottBackend.Controllers;
 
@@ -7,13 +8,24 @@ namespace AlcottBackend.Controllers;
 [Route("api/products")]
 public class ProductController : ControllerBase
 {
-    [HttpGet]
-    public List<Product> GetProducts()
-    {
-        return new List<Product> {
-            new Product {Id = 1, Name = "Progas 2kg", Category = "Gas", Price = 1200, StockLevel = 10 },
-            new Product {Id = 2, Name = "PVC pipe 1m", Category = "Piping", Price = 400, StockLevel = 100}
-        };
 
+    private ProductService _service;
+    public ProductController(ProductService service)
+    {
+        _service = service;
+    }
+    [HttpGet]
+    public IEnumerable<Product> GetProducts()
+    {
+        return _service.GetAll();
+
+    }
+
+    [HttpPost]
+    public ActionResult<Product> AddProduct(Product newProduct)
+    {
+        _service.Create(newProduct);
+
+        return CreatedAtAction(nameof(GetProducts), newProduct);
     }
 }
