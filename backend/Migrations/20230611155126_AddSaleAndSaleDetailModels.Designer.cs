@@ -3,6 +3,7 @@ using System;
 using AlcottBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230611155126_AddSaleAndSaleDetailModels")]
+    partial class AddSaleAndSaleDetailModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
@@ -99,7 +102,7 @@ namespace backend.Migrations
                         .IsRequired();
 
                     b.HasOne("AlcottBackend.Models.Sale", "Sale")
-                        .WithMany("SaleDetails")
+                        .WithMany()
                         .HasForeignKey("SaleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -107,11 +110,6 @@ namespace backend.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Sale");
-                });
-
-            modelBuilder.Entity("AlcottBackend.Models.Sale", b =>
-                {
-                    b.Navigation("SaleDetails");
                 });
 #pragma warning restore 612, 618
         }
