@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace AlcottBackend.Models;
 
 /*
@@ -17,6 +19,9 @@ public class SaleDetail
     public int Quantity { get; set; }
     public int SaleId { get; set; }
     public int ProductId { get; set; }
+    [JsonIgnore]
     public Sale? Sale { get; set; }
-    public ICollection<Product>? Products { get; set; }
+    [JsonIgnore]
+    public Product? Product { get; set; }
+
 }
