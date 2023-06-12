@@ -478,4 +478,4 @@ $RECYCLE.BIN/
 
 # SQL database files
 *.db
-*.db.*
+*.db-*
