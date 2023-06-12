@@ -13,5 +13,6 @@ public class Sale
 
     [Required]
     public string? PaymentType { get; set; } = "Cash";
+    public ICollection<SaleDetail>? SaleDetails { get; set; }
 
 }
