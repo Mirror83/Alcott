@@ -53,7 +53,25 @@ public class EmployeeService
     // TODO
     private string CreateToken(ClientEmployee clientEmployee)
     {
-        throw new NotImplementedException();
+        var claims = new List<Claim>{
+            new Claim(ClaimTypes.Name, clientEmployee.Name!)
+        };
+
+        var key = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(_config["AppSettings:Key"]!)
+        );
+
+        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+        var token = new JwtSecurityToken(
+            claims: claims,
+            expires: DateTime.Now.AddDays(1),
+            signingCredentials: credentials
+        );
+
+        var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+        return jwt;
     }
 
 }
