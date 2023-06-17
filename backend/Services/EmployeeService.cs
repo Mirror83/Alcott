@@ -61,7 +61,7 @@ public class EmployeeService
             Encoding.UTF8.GetBytes(_config["AppSettings:Key"]!)
         );
 
-        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
         var token = new JwtSecurityToken(
             claims: claims,
