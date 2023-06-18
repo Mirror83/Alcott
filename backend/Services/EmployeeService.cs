@@ -54,7 +54,8 @@ public class EmployeeService
     private string CreateToken(ClientEmployee clientEmployee)
     {
         var claims = new List<Claim>{
-            new Claim(ClaimTypes.Name, clientEmployee.Name!)
+            new Claim(ClaimTypes.Name, clientEmployee.Name!),
+            new Claim(ClaimTypes.Role, clientEmployee.Role.ToString())
         };
 
         var key = new SymmetricSecurityKey(
