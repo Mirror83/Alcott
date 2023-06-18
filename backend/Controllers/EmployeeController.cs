@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using AlcottBackend.Services;
 using AlcottBackend.Models;
 using AlcottBackend.ClientData;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AlcottBackend.Controllers;
 
@@ -16,7 +17,7 @@ public class EmployeeController : ControllerBase
         _service = service;
     }
 
-    [HttpGet]
+    [HttpGet, Authorize]
     public IEnumerable<Employee> GetEmployees()
     {
         return _service.GetEmployees();
@@ -37,11 +38,11 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPost("login")]
-    public ActionResult<string> Login(ClientEmployee clientEmployee)
+    public ActionResult<object> Login(ClientEmployee clientEmployee)
     {
         try
         {
-            return Ok(_service.Login(clientEmployee));
+            return Ok(new { Token = _service.Login(clientEmployee), Role = clientEmployee.Role });
         }
         catch (ArgumentException e)
         {
