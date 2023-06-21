@@ -18,6 +18,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(viteDevServerUrl);
         policy.AllowAnyHeader();
+        policy.AllowAnyMethod();
     });
 });
 
@@ -28,7 +29,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         {
             ValidateAudience = false,
             ValidateIssuer = false,
-            ValidateIssuerSigningKey = false,
+            ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(builder.Configuration["AppSettings:Key"]!)
             )
@@ -68,11 +69,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
-app.UseHttpsRedirection();
-
 // This enables CORS for all endpoints
 app.UseCors(AllowDevServerPolicy);
+
+app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
