@@ -36,6 +36,22 @@ public class ProductService
         return newProduct;
     }
 
+    /// <summary>
+    ///  Returns the <c>Product</c> that is deleted, else returns <c>null</c>
+    /// </summary>
+    public Product? DeleteProduct(int id)
+    {
+        var product = _context.Products.SingleOrDefault(prodcut => prodcut.Id == id);
+        if (product is not null)
+        {
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+            return product;
+        }
+
+        return null;
+    }
+
     public Product? UpdateProductAfterSale(int id, int quantity)
     {
         Product? productToBeSold = _context.Products.Find(id);
@@ -47,6 +63,30 @@ public class ProductService
             if (newStockLevel < 0)
             {
                 throw new InvalidOperationException("The quantity ordered exceeds the quantity in stock");
+            }
+
+            productToBeSold.StockLevel = newStockLevel;
+            _context.SaveChanges();
+            return productToBeSold;
+        }
+        else
+        {
+            return null;
+        }
+
+    }
+
+    public Product? UpdateProductAfterOrder(int id, int quantity)
+    {
+        Product? productToBeSold = _context.Products.Find(id);
+
+        if (productToBeSold is Product)
+        {
+            var newStockLevel = productToBeSold.StockLevel + quantity;
+
+            if (newStockLevel < productToBeSold.StockLevel)
+            {
+                throw new InvalidOperationException("The quantity ordered cannot be negative");
             }
 
             productToBeSold.StockLevel = newStockLevel;
