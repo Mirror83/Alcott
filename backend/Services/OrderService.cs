@@ -31,6 +31,9 @@ public class OrderService
     public Order RecordOrder(ClientOrder clientOrder)
     {
         var order = new Order();
+        // TODO: Revert the Order model's type for PricePaid to decimal
+        //       Also rename it to AmountPaid for consistency 
+        order.PricePaid = (double)clientOrder.AmountPaid;
         order.OrderDetails = new List<OrderDetail>();
 
         if (clientOrder.orderDetails.Count == 0)
