@@ -59,6 +59,7 @@ builder.Services.AddSwaggerGen(
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<SaleService>();
 builder.Services.AddScoped<EmployeeService>();
+builder.Services.AddScoped<OrderService>();
 
 var app = builder.Build();
 
