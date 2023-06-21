@@ -9,24 +9,26 @@ namespace AlcottBackend.Controllers;
 [Route("api/[controller]")]
 public class OrderController : ControllerBase
 {
-    private OrderService _service;
+    private readonly OrderService _service;
     public OrderController(OrderService orderService)
     {
         _service = orderService;
     }
 
-    [HttpGet]
+    [HttpGet("{id}")]
     public ActionResult<Order> GetOrder(int id)
     {
         var order = _service.GetOrder(id);
         if (order is not null) return Ok(order); else return NotFound();
     }
 
+    [HttpGet]
     public IEnumerable<Order> GetOrders()
     {
         return _service.GetOrders();
     }
 
+    [HttpPost]
     public ActionResult<Order> RecordOrder(ClientOrder clientOrder)
     {
         var newOrder = _service.RecordOrder(clientOrder);
