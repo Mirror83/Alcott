@@ -31,8 +31,15 @@ public class OrderController : ControllerBase
     [HttpPost]
     public ActionResult<Order> RecordOrder(ClientOrder clientOrder)
     {
-        var newOrder = _service.RecordOrder(clientOrder);
-        return CreatedAtAction(nameof(GetOrder), newOrder);
+        try
+        {
+            var newOrder = _service.RecordOrder(clientOrder);
+            return Ok(newOrder);
+        }
+        catch (Exception)
+        {
+            return BadRequest();
+        }
     }
 
 }
