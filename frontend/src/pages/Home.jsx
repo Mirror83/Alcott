@@ -6,28 +6,27 @@ import { Link, Heading, Text } from "@chakra-ui/react";
 
 const Home = () => {
   return (
-    <>
-      <Navbar />
+    <div>
       <Heading as="b" size="lg">
         Select option{" "}
       </Heading>
       <br />
       <Text>
-        <Link>Record sales</Link>
+        <Link href="/sales">Record sales</Link>
       </Text>
       <br />
       <Text>
-        <Link>Record incoming orders</Link>
+        <Link href="/orders">Record incoming orders</Link>
       </Text>
       <br />
       <Text>
-        <Link>View inventory</Link>
+        <Link href="/inventory">View inventory</Link>
       </Text>
       <br />
       <Text>
-        <Link>View sales report</Link>
+        <Link href="/report">View sales report</Link>
       </Text>
-    </>
+    </div>
   );
 };
 
