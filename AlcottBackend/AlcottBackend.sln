@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlcottBackend", "AlcottBackend\AlcottBackend.csproj", "{8AF1F1CC-1E42-461A-9497-47D91EBECC24}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AF1F1CC-1E42-461A-9497-47D91EBECC24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF1F1CC-1E42-461A-9497-47D91EBECC24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF1F1CC-1E42-461A-9497-47D91EBECC24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF1F1CC-1E42-461A-9497-47D91EBECC24}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1CC4B4F9-8A6F-4741-8485-282FC8B9E782}
+	EndGlobalSection
+EndGlobal
