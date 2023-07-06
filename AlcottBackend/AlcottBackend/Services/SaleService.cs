@@ -51,7 +51,7 @@ public class SaleService
             Product? product = _productService.GetById(item.Id) ?? throw new NullReferenceException();
             saleDetail.ProductId = product.Id;
 
-            _productService.UpdateProductAfterOrder(saleDetail.ProductId, item.Quantity);
+            _productService.UpdateProductAfterSale(saleDetail.ProductId, item.Quantity);
 
             saleDetail.Quantity = item.Quantity;
             sale.SaleDetails.Add(saleDetail);
