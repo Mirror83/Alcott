@@ -7,6 +7,7 @@ public class Sale
 
     public byte PaymentMethod { get; set; } = 0; // O for cash, 1 for cashless
     public int EmployeeId { get; set; }
+    public DateTime RecordedAt { get; set; } = DateTime.Now;
 
     // Navigation properties
     public ICollection<SaleDetail>? SaleDetails { get; set; }
