@@ -16,7 +16,13 @@ public static class DbInitializer
             new Product {Id = 2, Name = "PVC pipe 1m", Category = "Piping", Price = 400, StockLevel = 100}
         };
 
+        var employees = new List<Employee> {
+            new Employee {Name = "Joel Zimmerman", PasswordHash = BCrypt.Net.BCrypt.HashPassword("deadmau5"), Role="Employee", Email="joelzimm@example.com"},
+            new Employee {Name = "Mario Plumber", PasswordHash = BCrypt.Net.BCrypt.HashPassword("supermario"), Role="Admin", Email="marioandluigi@example.com"}
+        };
+
         context.Products.AddRange(products);
+        context.Employees.AddRange(employees);
         context.SaveChanges();
     }
 }
