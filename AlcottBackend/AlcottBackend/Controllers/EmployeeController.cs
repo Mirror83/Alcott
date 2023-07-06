@@ -27,7 +27,7 @@ public class EmployeeController : ControllerBase
     public ActionResult<Employee> RegisterEmployee(EmployeeRegisterRequest request)
     {
         try
-        { 
+        {
             var employee = _service.Register(request);
             return Created(nameof(GetEmployees), employee);
         }
@@ -38,17 +38,16 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPost("login")]
-    public ActionResult<string> Login(EmployeeLoginRequest request)
+    public ActionResult<EmployeeLoginResponse> Login(EmployeeLoginRequest request)
     {
         try
         {
-            var token = _service.Login(request);
-            return Ok(token);
+            EmployeeLoginResponse response = _service.Login(request);
+            return Ok(response);
         }
         catch (ArgumentException e)
         {
             return BadRequest(e.Message);
-
         }
     }
 

@@ -58,7 +58,7 @@ public class EmployeeService
             .SingleOrDefault(e => e.Name == name);
     }
 
-    public string Login(EmployeeLoginRequest request)
+    public EmployeeLoginResponse Login(EmployeeLoginRequest request)
     {
         var employee = GetByName(request.Name);
 
@@ -67,7 +67,7 @@ public class EmployeeService
             throw new ArgumentException("Invalid name or password");
         }
 
-        var claims = new List<Claim> { 
+        var claims = new List<Claim> {
                 new Claim(ClaimTypes.Name, employee.Name),
                 new Claim(ClaimTypes.Role, employee.Role)
             };
@@ -86,7 +86,7 @@ public class EmployeeService
 
         var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
-        return jwt;
+        return new EmployeeLoginResponse { Token = jwt, EmployeeName = employee.Name };
 
     }
 
