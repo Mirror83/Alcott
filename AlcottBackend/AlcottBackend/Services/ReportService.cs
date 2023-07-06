@@ -16,21 +16,32 @@ public class ReportService
 
     public ReportResponse GetDailyReport()
     {
-        var todaySales = _context.Sales.AsNoTracking().Where(
+        var todaySales = _context.Sales
+        .AsNoTracking()
+        .Where(
             sale => sale.RecordedAt.Date == DateTime.Today.Date
-        ).ToList();
+        )
+        .Include(sale => sale.SaleDetails)
+        .ToList();
 
         int productsSold = 0;
-        todaySales.ForEach(sale => productsSold += sale!.SaleDetails!.Count());
 
         var totalAmountOnSales = todaySales.Sum(sale => sale.AmountPaid);
 
-        var todayOrders = _context.Orders.AsNoTracking().Where(
+        var todayOrders = _context.Orders
+        .AsNoTracking()
+        .Where(
             order => order.ReceivedAt.Date == DateTime.Today.Date
-        ).ToList();
+        ).Include(order => order.OrderDetails)
+        .ToList();
 
         int productsOrdered = 0;
-        todayOrders.ForEach(order => productsOrdered += order!.OrderDetails!.Count());
+
+        todayOrders.ForEach(order =>
+        {
+            Console.WriteLine(order.OrderDetails);
+            productsOrdered += order!.OrderDetails!.Count();
+        });
 
         var totalAmountOnOrders = todayOrders.Sum(order => order.AmountPaid);
 
