@@ -40,6 +40,7 @@ public class SaleService
         var sale = new Sale
         {
             AmountPaid = saleRequest.AmountPaid,
+            PaymentMethod = saleRequest.PaymentMethod,
             SaleDetails = new List<SaleDetail>(),
             EmployeeId = employeeId
         };
