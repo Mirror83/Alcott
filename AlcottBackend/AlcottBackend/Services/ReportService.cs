@@ -14,7 +14,7 @@ public class ReportService
         _context = context;
     }
 
-    public ReportResponse getDailyReport()
+    public ReportResponse GetDailyReport()
     {
         var todaySales = _context.Sales.AsNoTracking().Where(
             sale => sale.RecordedAt.Date == DateTime.Today.Date
