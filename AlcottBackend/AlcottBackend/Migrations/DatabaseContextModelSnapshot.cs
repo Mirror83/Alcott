@@ -132,6 +132,9 @@ namespace AlcottBackend.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<byte>("PaymentMethod")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
@@ -216,7 +219,7 @@ namespace AlcottBackend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AlcottBackend.Models.Sale", "sale")
+                    b.HasOne("AlcottBackend.Models.Sale", "Sale")
                         .WithMany("SaleDetails")
                         .HasForeignKey("SaleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -224,7 +227,7 @@ namespace AlcottBackend.Migrations
 
                     b.Navigation("Product");
 
-                    b.Navigation("sale");
+                    b.Navigation("Sale");
                 });
 
             modelBuilder.Entity("AlcottBackend.Models.Order", b =>
