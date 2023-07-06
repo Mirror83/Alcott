@@ -13,6 +13,5 @@ public class OrderDetail
     public Product? Product { get; set; }
     [JsonIgnore]
     public Order? Order { get; set; }
-    [JsonIgnore]
-    public ICollection<OrderDetail>? Orders { get; set; }
+
 }
