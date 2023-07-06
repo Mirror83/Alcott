@@ -13,7 +13,7 @@ public class OrderService
     private readonly EmployeeService _employeeService;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public OrderService(DatabaseContext context, 
+    public OrderService(DatabaseContext context,
         ProductService productService,
         IHttpContextAccessor httpContextAccessor,
         EmployeeService employeeService)
@@ -21,7 +21,7 @@ public class OrderService
         _context = context;
         _productService = productService;
         _httpContextAccessor = httpContextAccessor;
-        _employeeService = employeeService; 
+        _employeeService = employeeService;
     }
 
     public IEnumerable<Order> GetOrders()
@@ -48,6 +48,7 @@ public class OrderService
         {
             AmountPaid = orderRequest.AmountPaid,
             OrderDetails = new List<OrderDetail>(),
+            PaymentMethod = orderRequest.PaymentMethod,
             EmployeeId = employeeId
         };
 
