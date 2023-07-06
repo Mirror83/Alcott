@@ -55,8 +55,10 @@ public class SaleService
 
             saleDetail.Quantity = item.Quantity;
             sale.SaleDetails.Add(saleDetail);
+
         }
 
+        _context.SaveChanges();
         return sale;
     }
 
